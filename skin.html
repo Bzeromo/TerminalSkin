@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>[##_page_title_##]</title>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body id="[##_body_id_##]">
+<s_t3>
+  <a class="skip" href="#main">본문으로</a>
+
+  <header class="header">
+    <div class="container header__inner">
+      <div class="brand">
+        <a class="brand__logo" href="[##_blog_link_##]">
+          <span class="brand__prompt">$</span>
+          <span class="brand__name">[##_title_##]</span>
+        </a>
+        <div class="brand__desc">[##_desc_##]</div>
+      </div>
+
+      <div class="header__actions">
+        <form class="search" action="[##_search_url_##]" method="get">
+          <input class="search__input" type="search" name="q" placeholder="Search…" />
+          <button class="search__btn" type="submit">↵</button>
+        </form>
+
+        <button class="mode" type="button" id="modeToggle" aria-label="테마 토글">☾</button>
+
+        <nav class="links">
+          <a href="[##_rss_url_##]" class="links__item">RSS</a>
+          <a href="/notice" class="links__item">NOTICE</a>
+          <a href="/guestbook" class="links__item">GUEST</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout container">
+    <main id="main" class="main">
+      <!-- 홈/카테고리 목록 영역 -->
+      <section class="panel">
+        <h2 class="panel__title">최근 글</h2>
+
+        <!-- 여기에 티스토리의 글 목록 블록을 넣으세요 -->
+        <div class="post-list">
+          <!-- 예시 카드 -->
+          <!--
+          <article class="post-card">
+            <a class="post-card__link" href="[##_article_link_##]">
+              <h3 class="post-card__title">[##_article_title_##]</h3>
+              <div class="post-card__meta">
+                <span>[##_article_date_##]</span>
+                <span>·</span>
+                <span>[##_article_category_##]</span>
+              </div>
+              <p class="post-card__desc">[##_article_summary_##]</p>
+              <div class="post-card__tags">#tag #tag</div>
+            </a>
+          </article>
+          -->
+        </div>
+      </section>
+
+      <!-- 글 상세 영역 -->
+      <article class="panel post">
+        <header class="post__head">
+          <h1 class="post__title">[##_article_title_##]</h1>
+          <div class="post__meta">
+            <span class="badge">[##_article_category_##]</span>
+            <span class="dim">[##_article_date_##]</span>
+          </div>
+        </header>
+
+        <nav class="toc" id="toc"></nav>
+
+        <div class="post__body" id="postBody">
+          [##_article_content_##]
+        </div>
+
+        <footer class="post__foot">
+          <div class="tags">
+            [##_tag_list_##]
+          </div>
+          <div class="nav-post">
+            <a class="nav-post__item" href="[##_prev_post_url_##]">← 이전 글</a>
+            <a class="nav-post__item" href="[##_next_post_url_##]">다음 글 →</a>
+          </div>
+        </footer>
+
+        <section class="comments">
+          <h2 class="panel__title">댓글</h2>
+          [##_comment_list_##]
+          [##_comment_form_##]
+        </section>
+      </article>
+    </main>
+
+    <aside class="aside">
+      <section class="panel">
+        <h2 class="panel__title">About</h2>
+        <div class="about">
+          <div class="about__line"><span class="k">Role</span> Backend Engineer</div>
+          <div class="about__line"><span class="k">Stack</span> Java · Spring · DB · Infra</div>
+          <div class="about__line"><span class="k">Notes</span> 운영/성능/장애 기록</div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="panel__title">Category</h2>
+        [##_category_list_##]
+      </section>
+
+      <section class="panel">
+        <h2 class="panel__title">Recent</h2>
+        [##_recent_post_##]
+      </section>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">© [##_title_##]</div>
+      <div class="footer__right">
+        <span class="dim">Powered by Tistory</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 1) 다크/라이트 토글 (기본: dark)
+    (function () {
+      const key = "theme";
+      const saved = localStorage.getItem(key);
+      if (saved) document.documentElement.dataset.theme = saved;
+      else document.documentElement.dataset.theme = "dark";
+
+      const btn = document.getElementById("modeToggle");
+      if (!btn) return;
+
+      btn.addEventListener("click", () => {
+        const current = document.documentElement.dataset.theme || "dark";
+        const next = current === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem(key, next);
+      });
+    })();
+
+    // 2) TOC 생성(옵션): 본문 h2/h3 기준으로 목차
+    (function () {
+      const body = document.getElementById("postBody");
+      const toc = document.getElementById("toc");
+      if (!body || !toc) return;
+
+      const headings = body.querySelectorAll("h2, h3");
+      if (!headings.length) {
+        toc.style.display = "none";
+        return;
+      }
+
+      const ul = document.createElement("ul");
+      ul.className = "toc__list";
+
+      headings.forEach((h, idx) => {
+        if (!h.id) h.id = `h-${idx}`;
+        const li = document.createElement("li");
+        li.className = `toc__item toc__item--${h.tagName.toLowerCase()}`;
+        li.innerHTML = `<a href="#${h.id}">${h.textContent}</a>`;
+        ul.appendChild(li);
+      });
+
+      toc.innerHTML = `<div class="toc__title">목차</div>`;
+      toc.appendChild(ul);
+    })();
+  </script>
+</s_t3>
+</body>
+</html>
