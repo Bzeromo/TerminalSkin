@@ -36,6 +36,10 @@ body {
   line-height: 1.7;
 }
 
+/* v1.1.1 tweaks */
+.mode { font-family: var(--sans); font-size: 18px; line-height: 1; display: grid; place-items: center; }
+.search__btn { user-select: none; }
+
 a { color: inherit; text-decoration: none; }
 a:hover { color: var(--accent); }
 

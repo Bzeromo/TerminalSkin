@@ -22,16 +22,26 @@
       </div>
 
       <div class="header__actions">
-        <form class="search" action="[##_search_url_##]" method="get">
-          <input class="search__input" type="search" name="q" placeholder="Search…" />
-          <button class="search__btn" type="submit">↵</button>
-        </form>
 
-        <button class="mode" type="button" id="modeToggle" aria-label="테마 토글">☾</button>
+        <!-- 티스토리 기본 검색 치환자: Lint 설정 철저하면 오류로 검출되겠지만 스킨 지정엔 이상 없음... -->
+        <s_search>
+          <div class="search" role="search">
+            <input class="search__input"
+                   type="search"
+                   name="[##_search_name_##]"
+                   value="[##_search_text_##]"
+                   placeholder="Search…"
+                   autocomplete="off"
+                   onkeypress="if (event.keyCode == 13) { [##_search_onclick_submit_##] }" />
+            <button class="search__btn" type="button" onclick="[##_search_onclick_submit_##]" aria-label="검색">↵</button>
+          </div>
+        </s_search>
+
+        <!-- 테마 토글: 다크=🌙, 라이트=☀️ -->
+        <button class="mode" type="button" id="modeToggle" aria-label="테마 토글">🌙</button>
 
         <nav class="links">
           <a href="[##_rss_url_##]" class="links__item">RSS</a>
-          <a href="/notice" class="links__item">NOTICE</a>
           <a href="/guestbook" class="links__item">GUEST</a>
         </nav>
       </div>
@@ -188,12 +198,22 @@
   </footer>
 
   <script>
-    // 다크/라이트 토글 (기본: dark)
+    function syncThemeIcon() {
+      const btn = document.getElementById("modeToggle");
+      if (!btn) return;
+      const theme = document.documentElement.dataset.theme || "dark";
+      btn.textContent = (theme === "dark") ? "🌙" : "☀️";
+      btn.setAttribute("aria-label", theme === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환");
+    }
+
+    // 1) 다크/라이트 토글 (기본: dark)
     (function () {
       const key = "theme";
       const saved = localStorage.getItem(key);
       if (saved) document.documentElement.dataset.theme = saved;
       else document.documentElement.dataset.theme = "dark";
+
+      syncThemeIcon();
 
       const btn = document.getElementById("modeToggle");
       if (!btn) return;
@@ -203,10 +223,11 @@
         const next = current === "dark" ? "light" : "dark";
         document.documentElement.dataset.theme = next;
         localStorage.setItem(key, next);
+        syncThemeIcon();
       });
     })();
 
-    // TOC (h2/h3)
+    // 2) TOC (h2/h3)
     (function () {
       const body = document.getElementById("postBody");
       const toc = document.getElementById("toc");
