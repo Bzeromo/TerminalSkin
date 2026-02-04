@@ -47,6 +47,22 @@
       </div>
     </div>
   </header>
+    <!-- ✅ Landing (대문) : 홈에서만 표시 -->
+  <section class="landing" id="landing" aria-label="대문">
+    <div class="landing__inner">
+      <div class="landing__term">
+        <div class="landing__line"><span class="p">$</span> whoami</div>
+        <h1 class="landing__title">[##_title_##]</h1>
+        <p class="landing__desc">Backend · Infra · DB · 운영/성능/장애 기록</p>
+      </div>
+
+      <div class="landing__actions">
+        <a class="landing__btn landing__btn--primary" href="[##_blog_link_##]">블로그 들어가기</a>
+        <a class="landing__btn" href="/pages/portfolio">포트폴리오 보기</a>
+        <button class="landing__btn landing__btn--ghost" type="button" id="skipLanding">대문 닫기</button>
+      </div>
+    </div>
+  </section>
 
   <div class="layout container">
     <main id="main" class="main">
@@ -253,6 +269,25 @@
       toc.innerHTML = `<div class="toc__title">목차</div>`;
       toc.appendChild(ul);
     })();
+    // ✅ Landing(대문) 제어: 홈에서만 보이게 + 닫기
+  (function () {
+    var bodyId = (document.body && document.body.id) ? document.body.id : "";
+    var isIndex = (bodyId === "tt-body-index");
+    if (!isIndex) return;
+
+    var landing = document.getElementById("landing");
+    if (!landing) return;
+
+    document.documentElement.classList.add("is-landing");
+
+    var skip = document.getElementById("skipLanding");
+    if (skip) {
+      skip.addEventListener("click", function () {
+        document.documentElement.classList.remove("is-landing");
+        landing.style.display = "none";
+      });
+    }
+  })();
   </script>
 </s_t3>
 </body>

@@ -279,3 +279,43 @@ a:hover { color: var(--accent); }
   background-clip: padding-box;
 }
 *::-webkit-scrollbar-track { background: color-mix(in srgb, var(--panel) 70%, transparent); }
+
+html.is-landing .header__actions{ opacity:.25; pointer-events:none; }
+
+/* ===== Landing (대문) ===== */
+.landing{ display:none; padding: 70px 0 40px; }
+.landing__inner{
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+.landing__term{ font-family: var(--mono); }
+.landing__line{ color: var(--dim); margin-bottom: 10px; }
+.landing__line .p{ color: var(--accent); font-weight: 800; margin-right: 8px; }
+.landing__title{ margin: 0 0 8px 0; font-size: clamp(28px, 3vw, 40px); letter-spacing: -0.6px; }
+.landing__desc{ margin: 0; color: var(--dim); font-family: var(--sans); }
+
+.landing__actions{ margin-top: 18px; display:flex; flex-wrap: wrap; gap: 10px; }
+.landing__btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: 10px 14px; border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent; color: var(--text);
+  font-family: var(--mono); font-size: 13px;
+  cursor:pointer;
+}
+.landing__btn--primary{
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+.landing__btn--ghost{ opacity: .85; }
+.landing__btn:hover{ border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+
+/* 대문 표시 상태 */
+html.is-landing .landing{ display:block; }
+html.is-landing .layout,
+html.is-landing .footer{ display:none; }
