@@ -14,7 +14,8 @@
   <header class="header">
     <div class="container header__inner">
       <div class="brand">
-        <a class="brand__logo" href="[##_blog_link_##]">
+        <!-- 블로그 타이틀 클릭 = 대문으로(entered_blog 제거 후 / 이동) -->
+        <a class="brand__logo" href="/" id="brandLanding">
           <span class="brand__prompt">$</span>
           <span class="brand__name">[##_title_##]</span>
         </a>
@@ -23,7 +24,6 @@
 
       <div class="header__actions">
 
-        <!-- 티스토리 기본 검색 치환자: Lint 설정 철저하면 오류로 검출되겠지만 스킨 지정엔 이상 없음... -->
         <s_search>
           <div class="search" role="search">
             <input class="search__input"
@@ -37,29 +37,280 @@
           </div>
         </s_search>
 
-        <!-- 테마 토글: 다크=🌙, 라이트=☀️ -->
         <button class="mode" type="button" id="modeToggle" aria-label="테마 토글">🌙</button>
 
         <nav class="links">
+          <a href="/pages/portfolio" class="links__item">PORTFOLIO</a>
+          <button type="button" class="links__item links__btn" id="goLanding" aria-label="대문으로 이동">LANDING</button>
           <a href="[##_rss_url_##]" class="links__item">RSS</a>
           <a href="/guestbook" class="links__item">GUEST</a>
         </nav>
       </div>
     </div>
   </header>
-    <!-- ✅ Landing (대문) : 홈에서만 표시 -->
+
+  <!-- ✅ Landing (대문) -->
   <section class="landing" id="landing" aria-label="대문">
-    <div class="landing__inner">
-      <div class="landing__term">
-        <div class="landing__line"><span class="p">$</span> whoami</div>
-        <h1 class="landing__title">[##_title_##]</h1>
-        <p class="landing__desc">Backend · Infra · DB · 운영/성능/장애 기록</p>
+    <div class="landing__bg" aria-hidden="true"></div>
+
+    <div class="landing__wrap container">
+      <div class="landing__card" role="region" aria-label="터미널 대문">
+        <div class="landing__top" aria-hidden="true">
+          <div class="landing__dots"><span></span><span></span><span></span></div>
+          <div class="landing__path">~/zeromost</div>
+          <div class="landing__pill">ONLINE</div>
+        </div>
+
+        <div class="landing__body">
+          <div class="landing__prompt">
+            <span class="p">$</span>
+            <span class="cmd">whoami</span>
+            <span class="cursor" aria-hidden="true"></span>
+          </div>
+
+          <h1 class="landing__title">[##_title_##]</h1>
+          <p class="landing__desc">Backend · Infra · DB · 운영/성능/장애 기록</p>
+
+          <div class="landing__type" aria-live="polite">
+            <span class="p">$</span>
+            <span class="cmd" id="typeTarget"></span><span class="cursor" aria-hidden="true"></span>
+          </div>
+
+          <div class="landing__console" id="landingConsole" aria-label="터미널 출력" role="log" aria-live="polite"></div>
+
+          <div class="landing__grid">
+            <div class="landing__meta">
+              <div class="kv"><span class="k">role</span><span class="v">Backend Engineer</span></div>
+              <div class="kv"><span class="k">stack</span><span class="v">Java · Spring · DB · Infra</span></div>
+              <div class="kv"><span class="k">notes</span><span class="v">운영/성능/장애 트러블슈팅</span></div>
+            </div>
+
+            <div class="landing__actions">
+              <a class="landing__btn landing__btn--primary" href="/?view=blog" data-enter="blog" aria-label="블로그로 이동">
+                <span class="p">$</span> enter_blog
+              </a>
+              <a class="landing__btn" href="/pages/portfolio" data-enter="portfolio" aria-label="포트폴리오로 이동">
+                <span class="p">$</span> open_portfolio
+              </a>
+              <button class="landing__btn landing__btn--ghost" type="button" id="skipLanding" aria-label="대문 닫기">
+                <span class="p">$</span> :q
+              </button>
+            </div>
+          </div>
+
+          <div class="landing__hint" aria-label="힌트">
+            <span class="kbd">Enter</span>로 블로그 · <span class="kbd">Esc</span>로 닫기
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Portfolio (포트폴리오 전용 페이지 전체 레이아웃) -->
+  <section class="portfolio" id="portfolio" aria-label="포트폴리오">
+    <div class="portfolio__bg" aria-hidden="true"></div>
+
+    <div class="container portfolio__wrap">
+      <div class="portfolio__hero">
+        <div class="portfolio__terminal">
+          <div class="portfolio__top" aria-hidden="true">
+            <div class="portfolio__dots"><span></span><span></span><span></span></div>
+            <div class="portfolio__path">~/portfolio</div>
+            <div class="portfolio__pill">PROFILE</div>
+          </div>
+
+          <div class="portfolio__body">
+            <div class="portfolio__line">
+              <span class="p">$</span> <span class="cmd">cat ./about.md</span>
+            </div>
+            <h1 class="portfolio__title">Backend Engineer Portfolio</h1>
+            <p class="portfolio__subtitle">
+              운영/성능/장애 대응을 기록하고, 시스템을 단단하게 만드는 개발자
+            </p>
+
+            <div class="portfolio__quick">
+              <a class="portfolio__btn portfolio__btn--primary" href="/?view=blog" aria-label="블로그로 이동">
+                <span class="p">$</span> back_to_blog
+              </a>
+              <a class="portfolio__btn" href="#projects" aria-label="프로젝트로 이동">
+                <span class="p">$</span> view_projects
+              </a>
+              <a class="portfolio__btn" href="#contact" aria-label="연락처로 이동">
+                <span class="p">$</span> contact
+              </a>
+            </div>
+
+            <div class="portfolio__stats">
+              <div class="stat">
+                <div class="stat__k">Focus</div>
+                <div class="stat__v">Reliability · Performance · Observability</div>
+              </div>
+              <div class="stat">
+                <div class="stat__k">Stack</div>
+                <div class="stat__v">Java/Spring · DB · AWS · Linux</div>
+              </div>
+              <div class="stat">
+                <div class="stat__k">Notes</div>
+                <div class="stat__v">문제 재현 → 원인 규명 → 재발 방지</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio__side">
+          <div class="portfolio__card">
+            <div class="portfolio__cardTitle">Highlights</div>
+            <ul class="portfolio__list">
+              <li>운영 장애 원인 분석 &amp; 재발 방지(로그/메트릭 기반)</li>
+              <li>DB 설계/튜닝, 캐시/큐 적용으로 성능 개선</li>
+              <li>배포/운영 자동화(스크립트/CI 중심)</li>
+            </ul>
+          </div>
+
+          <div class="portfolio__card">
+            <div class="portfolio__cardTitle">Links</div>
+            <div class="portfolio__links">
+              <a class="plink" href="#" target="_blank" rel="noopener">GitHub (수정)</a>
+              <a class="plink" href="#" target="_blank" rel="noopener">Resume (수정)</a>
+              <a class="plink" href="#" target="_blank" rel="noopener">LinkedIn (수정)</a>
+            </div>
+            <div class="portfolio__note dim">※ 위 링크는 주인님이 실제 주소로 교체하세요.</div>
+          </div>
+        </div>
       </div>
 
-      <div class="landing__actions">
-        <a class="landing__btn landing__btn--primary" href="[##_blog_link_##]">블로그 들어가기</a>
-        <a class="landing__btn" href="/pages/portfolio">포트폴리오 보기</a>
-        <button class="landing__btn landing__btn--ghost" type="button" id="skipLanding">대문 닫기</button>
+      <div class="portfolio__grid">
+        <section class="portfolio__section" id="projects">
+          <div class="portfolio__sectionHead">
+            <div class="portfolio__sectionKicker">Projects</div>
+            <h2 class="portfolio__sectionTitle">주요 프로젝트</h2>
+          </div>
+
+          <div class="portfolio__cards">
+            <article class="pcard">
+              <div class="pcard__top">
+                <div class="pcard__name">RunHi</div>
+                <div class="pcard__tag">Community</div>
+              </div>
+              <p class="pcard__desc">
+                러닝 크루 커뮤니티. 크루/피드/러닝 기록 중심의 서비스.
+              </p>
+              <div class="pcard__meta">
+                <span class="pill">Next.js</span>
+                <span class="pill">TypeScript</span>
+                <span class="pill">Zustand</span>
+              </div>
+              <div class="pcard__foot">
+                <a class="pcard__link" href="#" target="_blank" rel="noopener">Repo (수정)</a>
+                <a class="pcard__link" href="#" target="_blank" rel="noopener">Demo (수정)</a>
+              </div>
+            </article>
+
+            <article class="pcard">
+              <div class="pcard__top">
+                <div class="pcard__name">Backend Terminal Dark</div>
+                <div class="pcard__tag">Tistory Skin</div>
+              </div>
+              <p class="pcard__desc">
+                터미널 감성의 반응형 티스토리 스킨. 대문/테마/UX 개선 중심.
+              </p>
+              <div class="pcard__meta">
+                <span class="pill">HTML/CSS</span>
+                <span class="pill">Tistory Template</span>
+                <span class="pill">UX</span>
+              </div>
+              <div class="pcard__foot">
+                <a class="pcard__link" href="/" rel="noopener">Blog</a>
+                <a class="pcard__link" href="#contact">Contact</a>
+              </div>
+            </article>
+
+            <article class="pcard">
+              <div class="pcard__top">
+                <div class="pcard__name">Ops Notes</div>
+                <div class="pcard__tag">Playbook</div>
+              </div>
+              <p class="pcard__desc">
+                장애 대응/운영 표준화 문서화(체크리스트, 재발 방지 템플릿).
+              </p>
+              <div class="pcard__meta">
+                <span class="pill">Logging</span>
+                <span class="pill">Monitoring</span>
+                <span class="pill">Runbook</span>
+              </div>
+              <div class="pcard__foot">
+                <a class="pcard__link" href="#" target="_blank" rel="noopener">Docs (수정)</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="portfolio__section" id="skills">
+          <div class="portfolio__sectionHead">
+            <div class="portfolio__sectionKicker">Skills</div>
+            <h2 class="portfolio__sectionTitle">기술 스택</h2>
+          </div>
+
+          <div class="portfolio__skills">
+            <div class="skill">
+              <div class="skill__k">Backend</div>
+              <div class="skill__v">Java, Spring Boot, REST API, Auth</div>
+            </div>
+            <div class="skill">
+              <div class="skill__k">DB</div>
+              <div class="skill__v">MySQL, MongoDB, Index, Query Tuning</div>
+            </div>
+            <div class="skill">
+              <div class="skill__k">Infra</div>
+              <div class="skill__v">AWS, Linux, Nginx, Docker</div>
+            </div>
+            <div class="skill">
+              <div class="skill__k">Observability</div>
+              <div class="skill__v">Logback, Metrics, Incident Postmortem</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="portfolio__section" id="contact">
+          <div class="portfolio__sectionHead">
+            <div class="portfolio__sectionKicker">Contact</div>
+            <h2 class="portfolio__sectionTitle">연락</h2>
+          </div>
+
+          <div class="portfolio__contact">
+            <div class="contact__row">
+              <div class="contact__k">Email</div>
+              <div class="contact__v"><a href="mailto:you@example.com">you@example.com</a> (수정)</div>
+            </div>
+            <div class="contact__row">
+              <div class="contact__k">GitHub</div>
+              <div class="contact__v"><a href="#" target="_blank" rel="noopener">https://github.com/yourname</a> (수정)</div>
+            </div>
+            <div class="contact__row">
+              <div class="contact__k">Blog</div>
+              <div class="contact__v"><a href="/">[##_title_##]</a></div>
+            </div>
+
+            <div class="portfolio__cta">
+              <a class="portfolio__btn portfolio__btn--primary" href="/?view=blog">
+                <span class="p">$</span> back_to_blog
+              </a>
+              <button class="portfolio__btn" type="button" id="copyEmail">
+                <span class="p">$</span> copy_email
+              </button>
+            </div>
+
+            <div class="portfolio__note dim" id="copyToast" style="display:none;">
+              복사 완료
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="portfolio__footer dim">
+        <span>© [##_title_##]</span>
+        <span>·</span>
+        <span>Built with Tistory Skin</span>
       </div>
     </div>
   </section>
@@ -67,7 +318,6 @@
   <div class="layout container">
     <main id="main" class="main">
 
-      <!-- (A) 카테고리/검색/태그 리스트 페이지 -->
       <s_list>
         <section class="panel">
           <h2 class="panel__title">[##_list_conform_##] · [##_list_count_##]</h2>
@@ -104,10 +354,8 @@
         </section>
       </s_list>
 
-      <!-- (B) 홈/글 목록/글 상세 공통: 글 그룹 -->
       <s_article_rep>
 
-        <!-- (B-1) 인덱스(홈/목록) 카드 리스트 -->
         <s_index_article_rep>
           <section class="panel">
             <h2 class="panel__title">최근 글</h2>
@@ -136,7 +384,6 @@
           </section>
         </s_index_article_rep>
 
-        <!-- (B-2) 글 상세 -->
         <s_permalink_article_rep>
           <article class="panel post">
             <header class="post__head">
@@ -222,7 +469,6 @@
       btn.setAttribute("aria-label", theme === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환");
     }
 
-    // 1) 다크/라이트 토글 (기본: dark)
     (function () {
       const key = "theme";
       const saved = localStorage.getItem(key);
@@ -243,7 +489,6 @@
       });
     })();
 
-    // 2) TOC (h2/h3)
     (function () {
       const body = document.getElementById("postBody");
       const toc = document.getElementById("toc");
@@ -269,26 +514,239 @@
       toc.innerHTML = `<div class="toc__title">목차</div>`;
       toc.appendChild(ul);
     })();
-    // ✅ Landing(대문) 제어: 홈에서만 보이게 + 닫기
-  (function () {
-    var bodyId = (document.body && document.body.id) ? document.body.id : "";
-    var isIndex = (bodyId === "tt-body-index");
-    if (!isIndex) return;
-
-    var landing = document.getElementById("landing");
-    if (!landing) return;
-
-    document.documentElement.classList.add("is-landing");
-
-    var skip = document.getElementById("skipLanding");
-    if (skip) {
-      skip.addEventListener("click", function () {
-        document.documentElement.classList.remove("is-landing");
-        landing.style.display = "none";
-      });
-    }
-  })();
   </script>
+
+  <script>
+    // 공통: localStorage 키
+    (function(){
+      window.__BTD__ = window.__BTD__ || {};
+      window.__BTD__.ENTER_KEY = "entered_blog";
+      window.__BTD__.setEntered = function(){
+        try { localStorage.setItem(window.__BTD__.ENTER_KEY, "1"); } catch(e){}
+      };
+      window.__BTD__.clearEntered = function(){
+        try { localStorage.removeItem(window.__BTD__.ENTER_KEY); } catch(e){}
+      };
+      window.__BTD__.hasEntered = function(){
+        try { return localStorage.getItem(window.__BTD__.ENTER_KEY) === "1"; } catch(e){ return false; }
+      };
+    })();
+  </script>
+
+  <script>
+    // ✅ Portfolio 페이지 감지 + 페이지 전체 렌더
+    (function () {
+      var isPortfolio = location.pathname.indexOf("/pages/portfolio") === 0;
+      if (!isPortfolio) return;
+
+      // 포트폴리오로 들어오는 순간도 "entered"로 간주(다음엔 대문 스킵)
+      if (window.__BTD__ && window.__BTD__.setEntered) window.__BTD__.setEntered();
+
+      document.documentElement.classList.add("is-portfolio");
+
+      // 이메일 복사 버튼(예시)
+      var btn = document.getElementById("copyEmail");
+      var toast = document.getElementById("copyToast");
+      if (btn) {
+        btn.addEventListener("click", function () {
+          var email = "you@example.com"; // 여기만 주인님 이메일로 교체
+          try {
+            navigator.clipboard.writeText(email).then(function(){
+              if (toast) {
+                toast.style.display = "";
+                setTimeout(function(){ toast.style.display = "none"; }, 1000);
+              }
+            });
+          } catch(e) {}
+        });
+      }
+    })();
+  </script>
+
+  <script>
+    // ✅ Landing(대문): 인덱스에서만 동작
+    (function () {
+      var bodyId = (document.body && document.body.id) ? document.body.id : "";
+      var isIndex = (bodyId === "tt-body-index");
+      if (!isIndex) return;
+
+      var landing = document.getElementById("landing");
+      if (!landing) return;
+
+      var consoleEl = document.getElementById("landingConsole");
+
+      function setEntered() { if (window.__BTD__ && window.__BTD__.setEntered) window.__BTD__.setEntered(); }
+      function clearEntered() { if (window.__BTD__ && window.__BTD__.clearEntered) window.__BTD__.clearEntered(); }
+      function hasEntered() { return (window.__BTD__ && window.__BTD__.hasEntered) ? window.__BTD__.hasEntered() : false; }
+
+      function nowStamp() {
+        var d = new Date();
+        var hh = String(d.getHours()).padStart(2, "0");
+        var mm = String(d.getMinutes()).padStart(2, "0");
+        var ss = String(d.getSeconds()).padStart(2, "0");
+        return hh + ":" + mm + ":" + ss;
+      }
+
+      function writeLine(text, cls) {
+        if (!consoleEl) return;
+        var div = document.createElement("div");
+        div.className = "landing__line" + (cls ? (" " + cls) : "");
+        div.textContent = "[" + nowStamp() + "] " + text;
+        consoleEl.appendChild(div);
+        while (consoleEl.childNodes.length > 10) consoleEl.removeChild(consoleEl.firstChild);
+        consoleEl.scrollTop = consoleEl.scrollHeight;
+      }
+
+      function showLanding() {
+        landing.style.display = "";
+        document.documentElement.classList.add("is-landing");
+      }
+
+      function hideLanding() {
+        landing.style.display = "none";
+        document.documentElement.classList.remove("is-landing");
+      }
+
+      // 헤더 블로그 타이틀 클릭 => entered 제거하고 / 로 (대문 보이게)
+      var brandLanding = document.getElementById("brandLanding");
+      if (brandLanding) {
+        brandLanding.addEventListener("click", function () {
+          clearEntered();
+        });
+      }
+
+      // view=blog 로 들어온 경우: entered 저장 후 파라미터 제거
+      var url = new URL(location.href);
+      var view = url.searchParams.get("view");
+      if (view === "blog") {
+        setEntered();
+        url.searchParams.delete("view");
+        history.replaceState({}, "", url.toString());
+      }
+
+      // 최초 1회 노출 정책
+      if (hasEntered()) {
+        hideLanding();
+      } else {
+        showLanding();
+      }
+
+      if (!hasEntered()) {
+        writeLine("boot: landing ui loaded", "ok");
+        writeLine("auth: guest session", "dim");
+        writeLine("hint: Enter=enter_blog, Esc=:q", "dim");
+      }
+
+      // 타입라이터 + 출력
+      var target = document.getElementById("typeTarget");
+      var lines = [
+        { cmd: "cat ./readme.md", out: "OK: loaded profile & notes" },
+        { cmd: "tail -f ./incident.log", out: "LISTEN: ops/perf/issues stream" },
+        { cmd: "git log --oneline --decorate -5", out: "READY: latest changes loaded" }
+      ];
+
+      function typeLoop() {
+        if (!target) return;
+        var li = 0, ci = 0;
+
+        function tick() {
+          if (!document.documentElement.classList.contains("is-landing")) return;
+          var line = lines[li].cmd;
+          target.textContent = line.slice(0, ci);
+          ci += 1;
+
+          if (ci <= line.length) {
+            setTimeout(tick, 42);
+          } else {
+            writeLine("$ " + lines[li].cmd, "cmd");
+            writeLine(lines[li].out, "ok");
+            setTimeout(function () {
+              ci = 0;
+              li = (li + 1) % lines.length;
+              tick();
+            }, 900);
+          }
+        }
+
+        setTimeout(tick, 300);
+      }
+      if (!hasEntered()) typeLoop();
+
+      // 시퀀스 출력 헬퍼
+      function runSequence(steps, onDone) {
+        var i = 0;
+        function next() {
+          if (!document.documentElement.classList.contains("is-landing")) return;
+          if (i >= steps.length) { if (onDone) onDone(); return; }
+          var s = steps[i++];
+          writeLine(s.text, s.cls);
+          setTimeout(next, s.delay || 180);
+        }
+        next();
+      }
+
+      function closeLandingPersist() {
+        runSequence(
+          [
+            { text: "exit: :q", cls: "dim", delay: 140 },
+            { text: "state: entered_blog=1", cls: "dim", delay: 140 }
+          ],
+          function () { setEntered(); hideLanding(); }
+        );
+      }
+
+      function goBlog() {
+        runSequence(
+          [
+            { text: "nav: enter_blog", cls: "ok", delay: 140 },
+            { text: "connect: /?view=blog", cls: "dim", delay: 160 },
+            { text: "ok: redirecting…", cls: "ok", delay: 160 }
+          ],
+          function () { setEntered(); location.href = "/?view=blog"; }
+        );
+      }
+
+      function goPortfolio() {
+        runSequence(
+          [
+            { text: "nav: open_portfolio", cls: "ok", delay: 140 },
+            { text: "connect: /pages/portfolio", cls: "dim", delay: 160 },
+            { text: "ok: redirecting…", cls: "ok", delay: 160 }
+          ],
+          function () { setEntered(); location.href = "/pages/portfolio"; }
+        );
+      }
+
+      var skip = document.getElementById("skipLanding");
+      if (skip) skip.addEventListener("click", function () { closeLandingPersist(); });
+
+      landing.addEventListener("click", function (e) {
+        var a = e.target && e.target.closest ? e.target.closest("a[data-enter]") : null;
+        if (!a) return;
+
+        e.preventDefault();
+        var kind = a.getAttribute("data-enter");
+        if (kind === "blog") goBlog();
+        else if (kind === "portfolio") goPortfolio();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (!document.documentElement.classList.contains("is-landing")) return;
+
+        if (e.key === "Escape") { e.preventDefault(); closeLandingPersist(); }
+        if (e.key === "Enter") { e.preventDefault(); goBlog(); }
+      });
+
+      var goLandingBtn = document.getElementById("goLanding");
+      if (goLandingBtn) {
+        goLandingBtn.addEventListener("click", function () {
+          clearEntered();
+          location.href = "/";
+        });
+      }
+    })();
+  </script>
+
 </s_t3>
 </body>
 </html>
