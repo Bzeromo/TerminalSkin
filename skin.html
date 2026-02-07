@@ -123,7 +123,7 @@
             <div class="portfolio__line">
               <span class="p">$</span> <span class="cmd">cat ./about.md</span>
             </div>
-            <h1 class="portfolio__title">Backend Engineer Portfolio</h1>
+            <h1 class="portfolio__title">ZeroMo</h1>
             <p class="portfolio__subtitle">
               운영/성능/장애 대응을 기록하고, 시스템을 단단하게 만드는 개발자
             </p>
@@ -170,11 +170,10 @@
           <div class="portfolio__card">
             <div class="portfolio__cardTitle">Links</div>
             <div class="portfolio__links">
-              <a class="plink" href="#" target="_blank" rel="noopener">GitHub (수정)</a>
-              <a class="plink" href="#" target="_blank" rel="noopener">Resume (수정)</a>
-              <a class="plink" href="#" target="_blank" rel="noopener">LinkedIn (수정)</a>
+              <a class="plink" href="https://github.com/bzeromo" target="_blank" rel="noopener">GitHub</a>
+              <a class="plink" href="#" target="_blank" rel="noopener">Resume</a>
+              <a class="plink" href="#" target="_blank" rel="noopener">LinkedIn</a>
             </div>
-            <div class="portfolio__note dim">※ 위 링크는 주인님이 실제 주소로 교체하세요.</div>
           </div>
         </div>
       </div>
@@ -201,8 +200,8 @@
                 <span class="pill">Zustand</span>
               </div>
               <div class="pcard__foot">
-                <a class="pcard__link" href="#" target="_blank" rel="noopener">Repo (수정)</a>
-                <a class="pcard__link" href="#" target="_blank" rel="noopener">Demo (수정)</a>
+                <a class="pcard__link" href="#" target="_blank" rel="noopener">Repo</a>
+                <a class="pcard__link" href="#" target="_blank" rel="noopener">Demo</a>
               </div>
             </article>
 
@@ -239,7 +238,7 @@
                 <span class="pill">Runbook</span>
               </div>
               <div class="pcard__foot">
-                <a class="pcard__link" href="#" target="_blank" rel="noopener">Docs (수정)</a>
+                <a class="pcard__link" href="#" target="_blank" rel="noopener">Docs</a>
               </div>
             </article>
           </div>
@@ -254,15 +253,15 @@
           <div class="portfolio__skills">
             <div class="skill">
               <div class="skill__k">Backend</div>
-              <div class="skill__v">Java, Spring Boot, REST API, Auth</div>
+              <div class="skill__v">Java, Spring, Spring Boot, REST API, O-Auth</div>
             </div>
             <div class="skill">
               <div class="skill__k">DB</div>
-              <div class="skill__v">MySQL, MongoDB, Index, Query Tuning</div>
+              <div class="skill__v">MySQL, MongoDB, DB2, Postgres, Redis</div>
             </div>
             <div class="skill">
               <div class="skill__k">Infra</div>
-              <div class="skill__v">AWS, Linux, Nginx, Docker</div>
+              <div class="skill__v">AWS, Linux, Nginx, AIX, Docker</div>
             </div>
             <div class="skill">
               <div class="skill__k">Observability</div>
@@ -280,11 +279,11 @@
           <div class="portfolio__contact">
             <div class="contact__row">
               <div class="contact__k">Email</div>
-              <div class="contact__v"><a href="mailto:you@example.com">you@example.com</a> (수정)</div>
+              <div class="contact__v"><a href="mailto:dudrb5260@naver.com">dudrb5260@naver.com</a></div>
             </div>
             <div class="contact__row">
               <div class="contact__k">GitHub</div>
-              <div class="contact__v"><a href="#" target="_blank" rel="noopener">https://github.com/yourname</a> (수정)</div>
+              <div class="contact__v"><a href="https://github.com/bzeromo" target="_blank" rel="noopener">https://github.com/bzeromo</a></div>
             </div>
             <div class="contact__row">
               <div class="contact__k">Blog</div>
@@ -544,12 +543,12 @@
 
       document.documentElement.classList.add("is-portfolio");
 
-      // 이메일 복사 버튼(예시)
+      // 이메일 복사 버튼
       var btn = document.getElementById("copyEmail");
       var toast = document.getElementById("copyToast");
       if (btn) {
         btn.addEventListener("click", function () {
-          var email = "you@example.com"; // 여기만 주인님 이메일로 교체
+          var email = "dudrb5260@naver.com";
           try {
             navigator.clipboard.writeText(email).then(function(){
               if (toast) {
@@ -607,7 +606,7 @@
         document.documentElement.classList.remove("is-landing");
       }
 
-      // 헤더 블로그 타이틀 클릭 => entered 제거하고 / 로 (대문 보이게)
+      // 헤더 블로그 타이틀 클릭
       var brandLanding = document.getElementById("brandLanding");
       if (brandLanding) {
         brandLanding.addEventListener("click", function () {
