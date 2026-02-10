@@ -14,21 +14,24 @@
   <header class="header">
     <div class="container header__inner">
       <div class="brand">
-        <!-- 블로그 타이틀 클릭 = 대문으로(entered_blog 제거 후 / 이동) -->
+        <div class="brand__top">
         <a class="brand__logo" href="/" id="brandLanding">
-          <span class="brand__prompt">$</span>
-          <span class="brand__name">[##_title_##]</span>
-        </a>
-        <div class="brand__desc">[##_desc_##]</div>
+            <span class="brand__prompt">$</span>
+            <span class="brand__name">[##_title_##]</span>
+          </a>
+        <a class="admin-link admin-link--js is-hidden" href="/manage" target="_blank" rel="noopener">ADMIN</a>
+
+        <s_ad_div>
+          <a class="admin-link admin-link--ad" href="/manage" target="_blank" rel="noopener">ADMIN</a>
+        </s_ad_div>
+    </div>
+
+
+                <div class="brand__desc">[##_desc_##]</div>
       </div>
 
       <div class="header__actions">
-        <s_ad_div>
-          <a class="admin-link" href="/manage" target="_blank" rel="noopener">ADMIN</a>
-        </s_ad_div>
-
-
-        <s_search>
+<s_search>
           <div class="search" role="search">
             <input class="search__input"
                    type="search"
@@ -325,8 +328,6 @@
         <section class="panel">
           <h2 class="panel__title">[##_list_conform_##] · [##_list_count_##]</h2>
 
-          
-          
           <div class="list-hero" aria-label="블로그 요약">
             <div class="list-hero__left">
               <div class="list-hero__title">Zeromo</div>
@@ -338,7 +339,8 @@
               <span class="chip">DB</span>
             </div>
           </div>
-<div class="post-list">
+
+          <div class="post-list">
             <s_list_empty>
               <div class="dim">표시할 글이 없습니다.</div>
             </s_list_empty>
@@ -346,26 +348,39 @@
             <s_list_rep>
               <article class="post-card">
                 <a class="post-card__link" href="[##_list_rep_link_##]">
-                  <h3 class="post-card__title">[##_list_rep_title_text_##]</h3>
-                  <div class="post-card__meta">
-                    <span>[##_list_rep_regdate_##]</span>
-                    <span>·</span>
-                    <a class="post-card__metaLink" href="[##_list_rep_category_link_##]">[##_list_rep_category_##]</a>
-                    <span>·</span>
-                    <span>댓글 [##_list_rep_rp_cnt_##]</span>
+                  <div class="post-card__thumb">
+                    <img class="post-card__img" src="[##_list_rep_thumbnail_##]" alt="" loading="lazy" onerror="this.remove();">
+                    <span class="post-card__thumbFallback" aria-hidden="true">🖼</span>
                   </div>
-                  <p class="post-card__desc">[##_list_rep_summary_##]</p>
+
+                  <div class="post-card__body">
+                    <h3 class="post-card__title">[##_list_rep_title_text_##]</h3>
+
+                    <div class="post-card__meta">
+                      <span class="meta__item">[##_list_rep_regdate_##]</span>
+                      <a class="post-card__metaLink meta__item" href="[##_list_rep_category_link_##]">[##_list_rep_category_##]</a>
+                      <span class="meta__item meta__comments" aria-label="댓글 수">
+                        <span class="meta__icon" aria-hidden="true">💬</span>
+                        <span class="sr-only">댓글</span>
+                        [##_list_rep_rp_cnt_##]
+                      </span>
+                    </div>
+
+                    <p class="post-card__desc">[##_list_rep_summary_##]</p>
+                  </div>
                 </a>
               </article>
             </s_list_rep>
           </div>
 
           <s_paging>
-            <div class="pager">
-              <a class="pager__btn" [##_prev_page_##]>← 이전</a>
-              <span class="pager__sep"></span>
-              <a class="pager__btn" [##_next_page_##]>다음 →</a>
-            </div>
+            <nav class="pagination" aria-label="페이지">
+              <a class="pg pg--nav" [##_prev_page_##] aria-label="이전 페이지">‹</a>
+              <s_paging_rep>
+                <a class="pg [##_paging_rep_current_##]" href="[##_paging_rep_link_##]">[##_paging_rep_page_##]</a>
+              </s_paging_rep>
+              <a class="pg pg--nav" [##_next_page_##] aria-label="다음 페이지">›</a>
+            </nav>
           </s_paging>
         </section>
       </s_list>
@@ -462,24 +477,60 @@
           <div class="kvrow"><span class="k">Company</span><span class="v">ITCEN Entec</span></div>
         </div>
       </section>
-      <section class="panel">
-        <h2 class="panel__title">Recent</h2>
-        <ul class="sb-list">
-          <s_rctps_rep>
-            <li class="sb-item">
-              <a class="sb-link" href="[##_rctps_rep_link_##]">[##_rctps_rep_title_##]</a>
-              <span class="sb-meta">[##_rctps_rep_simple_date_##]</span>
-            </li>
-          </s_rctps_rep>
-        </ul>
-      </section>
-
 
       <section class="panel">
         <h2 class="panel__title">Category</h2>
         [##_category_list_##]
       </section>
-    </aside>
+    <section class="panel">
+        <h2 class="panel__title">Tag</h2>
+        <div class="tag-cloud">
+          [##_tag_list_##]
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="tabhead" role="tablist" aria-label="최근글/인기글">
+          <button type="button" class="tabhead__btn is-active" data-tab="recent" role="tab" aria-selected="true">최근글</button>
+          <span class="tabhead__sep">|</span>
+          <button type="button" class="tabhead__btn" data-tab="popular" role="tab" aria-selected="false">인기글</button>
+        </div>
+
+        <div class="tabbody is-active" data-tab-panel="recent" role="tabpanel">
+          <ul class="sb-list sb-list--posts">
+            <s_rctps_rep>
+              <li class="sb-item">
+                <a class="sb-link" href="[##_rctps_rep_link_##]">[##_rctps_rep_title_##]</a>
+                <span class="sb-meta">[##_rctps_rep_simple_date_##]</span>
+              </li>
+            </s_rctps_rep>
+          </ul>
+        </div>
+
+        <div class="tabbody" data-tab-panel="popular" role="tabpanel" hidden>
+          <ul class="sb-list sb-list--posts">
+            <s_rctps_popular_rep>
+              <li class="sb-item">
+                <a class="sb-link" href="[##_rctps_popular_rep_link_##]">[##_rctps_popular_rep_title_##]</a>
+                <span class="sb-meta">[##_rctps_popular_rep_simple_date_##]</span>
+              </li>
+            </s_rctps_popular_rep>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="panel__title">Total</h2>
+        <div class="counter">
+          <div class="counter__total">[##_count_total_##]</div>
+          <div class="counter__sub">
+            <div class="counter__row"><span class="k">Today</span><span class="v">[##_count_today_##]</span></div>
+            <div class="counter__row"><span class="k">Yesterday</span><span class="v">[##_count_yesterday_##]</span></div>
+          </div>
+        </div>
+      </section>
+
+      </aside>
   </div>
 
   <footer class="footer">
@@ -904,5 +955,94 @@
   </script>
 
 </s_t3>
+  <script>
+    // Fix: some skins print thumbnail URL as plain text. Convert it to <img>.
+    (function () {
+      function normalizeThumb(el){
+        if (!el) return;
+        // If already has an image, ensure it fills the frame.
+        if (el.querySelector("img")) return;
+
+        const raw = (el.textContent || "").trim();
+        if (!raw) return;
+
+        const m = raw.match(/https?:\/\/\S+/);
+        if (!m) return;
+
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.alt = "";
+        img.src = m[0];
+        el.textContent = "";
+        el.appendChild(img);
+      }
+
+      function run(){
+        document.querySelectorAll(".post-card__thumb").forEach(normalizeThumb);
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", run);
+      } else {
+        run();
+      }
+    })();
+  </script>
+
+  </script>
+
+<script>
+  (function(){
+    function initTabs(){
+      var buttons = document.querySelectorAll(".tabhead__btn");
+      if(!buttons.length) return;
+      buttons.forEach(function(btn){
+        btn.addEventListener("click", function(){
+          var tab = btn.getAttribute("data-tab");
+          // buttons
+          buttons.forEach(function(b){
+            var active = b === btn;
+            b.classList.toggle("is-active", active);
+            b.setAttribute("aria-selected", active ? "true" : "false");
+          });
+          // panels
+          document.querySelectorAll(".tabbody").forEach(function(p){
+            var match = p.getAttribute("data-tab-panel") === tab;
+            p.classList.toggle("is-active", match);
+            if(match) p.removeAttribute("hidden");
+            else p.setAttribute("hidden", "");
+          });
+        });
+      });
+    }
+    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", initTabs);
+    else initTabs();
+  })();
+</script>
+
+<script>
+  (function(){
+    function ready(fn){ if(document.readyState !== "loading") fn(); else document.addEventListener("DOMContentLoaded", fn); }
+    function show(el){ if(el) el.classList.remove("is-hidden"); }
+    ready(function(){
+      var ad = document.querySelector(".admin-link--ad");
+      var fallback = document.querySelector(".admin-link--js");
+      if(!fallback) return;
+
+      if(ad){ fallback.remove(); return; }
+      try{
+        fetch("/manage", { method: "GET", credentials: "include", redirect: "follow" })
+          .then(function(res){
+            var url = (res && res.url) ? res.url : "";
+            var isLogin = url.indexOf("/manage") !== -1 && url.indexOf("login") === -1 && url.indexOf("auth") === -1;
+            if(isLogin) show(fallback);
+          })
+          .catch(function(){ /* ignore */ });
+      }catch(e){ /* ignore */ }
+    });
+  })();
+</script>
+
 </body>
 </html>
