@@ -15,7 +15,7 @@
     <div class="container header__inner">
       <div class="brand">
         <div class="brand__top">
-        <a class="brand__logo" href="/" id="brandLanding">
+        <a class="brand__logo" href="/?view=blog" id="brandLanding">
             <span class="brand__prompt">$</span>
             <span class="brand__name">[##_title_##]</span>
           </a>
@@ -25,9 +25,6 @@
           <a class="admin-link admin-link--ad" href="/manage" target="_blank" rel="noopener">ADMIN</a>
         </s_ad_div>
     </div>
-
-
-                <div class="brand__desc">[##_desc_##]</div>
       </div>
 
       <div class="header__actions">
@@ -47,10 +44,13 @@
         <button class="mode" type="button" id="modeToggle" aria-label="테마 토글">🌙</button>
 
         <nav class="links">
-          <a href="/pages/portfolio" class="links__item">PORTFOLIO</a>
+          <a href="/?view=portfolio" class="links__item" id="goPortfolio">PORTFOLIO</a>
           <button type="button" class="links__item links__btn" id="goLanding" aria-label="대문으로 이동">LANDING</button>
           <a href="[##_rss_url_##]" class="links__item">RSS</a>
-          <a href="/guestbook" class="links__item">GUEST</a>
+          <a href="[##_guestbook_link_##]" 
+            class="links__item" 
+            id="guestMenuLink"
+            data-guestbook-link="[##_guestbook_link_##]">GUEST</a>
         </nav>
       </div>
     </div>
@@ -71,12 +71,12 @@
         <div class="landing__body">
           <div class="landing__prompt">
             <span class="p">$</span>
-            <span class="cmd">whoami</span>
+            <span class="cmd">history</span>
             <span class="cursor" aria-hidden="true"></span>
           </div>
 
           <h1 class="landing__title">[##_title_##]</h1>
-          <p class="landing__desc">Backend · Infra · DB · 운영/성능/장애 기록</p>
+          <p class="landing__desc">개발의 아웃라이어, 일상의 아웃사이더</p>
 
           <div class="landing__type" aria-live="polite">
             <span class="p">$</span>
@@ -94,13 +94,13 @@
 
             <div class="landing__actions">
               <a class="landing__btn landing__btn--primary" href="/?view=blog" data-enter="blog" aria-label="블로그로 이동">
-                <span class="p">$</span> enter_blog
+                enter_blog
               </a>
-              <a class="landing__btn" href="/pages/portfolio" data-enter="portfolio" aria-label="포트폴리오로 이동">
-                <span class="p">$</span> open_portfolio
+              <a class="landing__btn" href="/?view=portfolio" data-enter="portfolio" aria-label="포트폴리오로 이동">
+                open_portfolio
               </a>
               <button class="landing__btn landing__btn--ghost" type="button" id="skipLanding" aria-label="대문 닫기">
-                <span class="p">$</span> :q
+                :q
               </button>
             </div>
           </div>
@@ -128,7 +128,11 @@
 
           <div class="portfolio__body">
             <div class="portfolio__line">
-              <span class="p">$</span> <span class="cmd">cat ./about.md</span>
+              <div class="landing__prompt">
+                <span class="p">$</span>
+                <span class="cmd">whoami</span>
+                <span class="cursor" aria-hidden="true"></span>
+              </div>
             </div>
             <h1 class="portfolio__title">ZeroMo</h1>
             <p class="portfolio__subtitle">
@@ -137,13 +141,13 @@
 
             <div class="portfolio__quick">
               <a class="portfolio__btn portfolio__btn--primary" href="/?view=blog" aria-label="블로그로 이동">
-                <span class="p">$</span> back_to_blog
+                back_to_blog
               </a>
               <a class="portfolio__btn" href="#projects" aria-label="프로젝트로 이동">
-                <span class="p">$</span> view_projects
+                view_projects
               </a>
               <a class="portfolio__btn" href="#contact" aria-label="연락처로 이동">
-                <span class="p">$</span> contact
+                contact
               </a>
             </div>
 
@@ -201,7 +205,7 @@
                 <div class="pcard__tag">Shopping Mall</div>
               </div>
               <p class="pcard__desc">
-                오케이홈의 침구류 도매 쇼핑몰 (前 개발자)
+                오케이홈의</br> 침구류 도매 쇼핑몰 (前 개발자)
               </p>
               <div class="pcard__meta">
                 <span class="pill">Springboot</span>
@@ -242,7 +246,7 @@
                 <div class="pcard__tag">Service</div>
               </div>
               <p class="pcard__desc">
-                서울시 요식업 상권 추천 및 분석 서비스 (ios)
+                서울시 요식업</br> 상권 추천 및 분석 서비스 (ios)
               </p>
               <div class="pcard__meta">
                 <span class="pill">PostgreSQL</span>
@@ -307,10 +311,10 @@
 
             <div class="portfolio__cta">
               <a class="portfolio__btn portfolio__btn--primary" href="/?view=blog">
-                <span class="p">$</span> back_to_blog
+                back_to_blog
               </a>
               <button class="portfolio__btn" type="button" id="copyEmail">
-                <span class="p">$</span> copy_email
+                copy_email
               </button>
             </div>
 
@@ -339,12 +343,11 @@
           <div class="list-hero" aria-label="블로그 요약">
             <div class="list-hero__left">
               <div class="list-hero__title">Zeromo</div>
-              <div class="list-hero__desc">언제나 최선을 제시하며, 시스템을 단단하게 만드는 개발자</div>
+              <div class="list-hero__desc">개발의 아웃라이어, 일상의 아웃사이더</div>
             </div>
             <div class="list-hero__right">
               <span class="chip">Backend</span>
-              <span class="chip">Infra</span>
-              <span class="chip">DB</span>
+              <span class="chip">SA</span>
             </div>
           </div>
 
@@ -383,15 +386,30 @@
 
           <s_paging>
             <nav class="pagination" aria-label="페이지">
-              <a class="pg pg--nav" [##_prev_page_##] aria-label="이전 페이지">‹</a>
+              <a class="pg pg--nav [##_no_more_prev_##]" [##_prev_page_##] aria-label="이전 페이지">‹</a>
               <s_paging_rep>
-                <a class="pg [##_paging_rep_current_##]" href="[##_paging_rep_link_##]">[##_paging_rep_page_##]</a>
+                <a class="pg [##_paging_rep_current_##]" [##_paging_rep_link_##]>
+                  [##_paging_rep_link_num_##]
+                </a>
               </s_paging_rep>
-              <a class="pg pg--nav" [##_next_page_##] aria-label="다음 페이지">›</a>
+              <a class="pg pg--nav [##_no_more_next_##]" [##_next_page_##] aria-label="다음 페이지">›</a>
             </nav>
           </s_paging>
         </section>
       </s_list>
+
+      <s_guest>
+        <section class="panel guestbook-panel">
+          <header class="guestbook-head">
+            <h2 class="panel__title">Guestbook</h2>
+            <p class="guestbook-head__desc">여기까지 오신 김에 방명록 하나 남겨주세요! :)</p>
+          </header>
+
+          <div class="guestbook-wrap">
+            [##_guestbook_group_##]
+          </div>
+        </section>
+      </s_guest>
 
       <s_article_rep>
 
@@ -405,61 +423,43 @@
                 </span>
                 <span class="dim">[##_article_rep_date_##]</span>
               </div>
-            
-              <div class="post__utils" role="toolbar" aria-label="글 도구">
-                <button type="button" class="pbtn" id="copyPermalink" aria-label="링크 복사">copy_link</button>
-                <button type="button" class="pbtn" id="toggleToc" aria-label="목차 토글">toggle_toc</button>
-                <a class="pbtn" href="/?view=blog" aria-label="목록으로">back_to_list</a>
+</header>
+<div class="post__content">
+              <aside class="post-toc" id="tocWrap" aria-label="목차">
+                <div class="post-toc__head">
+                  <span class="post-toc__title">목차</span>
+                  <div class="readbar readbar--inToc" aria-hidden="true"><div class="readbar__fill" id="readbarFill"></div></div>
+                </div>
+                <nav class="toc" id="toc"></nav>
+              </aside>
+
+              <div class="post__body" id="postBody">
+                [##_article_rep_desc_##]
               </div>
-            </header>
-            <div class="readbar" aria-hidden="true"><div class="readbar__fill" id="readbarFill"></div></div>
-
-
-            <nav class="toc" id="toc"></nav>
-
-            <div class="post__body" id="postBody">
-              [##_article_rep_desc_##]
             </div>
 
             
-            <s_article_related>
-              <section class="related">
-                <div class="related__head">
-                  <h3 class="related__title">[##_article_rep_category_##] 글 목록</h3>
-                  <a class="related__all" href="[##_article_rep_category_link_##]">전체글 보기 →</a>
-                </div>
-                <ul class="related__list">
-                  <s_article_related_rep>
-                    <li class="related__item">
-                      <a class="related__link" href="[##_article_related_rep_link_##]">
-                        <span class="related__text">[##_article_related_rep_title_##]</span>
-                        <span class="related__date">[##_article_related_rep_date_##]</span>
-                      </a>
-                    </li>
-                  </s_article_related_rep>
-                </ul>
-              </section>
-            </s_article_related>
-
-<footer class="post__foot">
+            <div class="post__tagsOnly">
               <s_tag_label>
-                <div class="tags">[##_tag_label_rep_##]</div>
+                <div class="post__tagsInline">
+                  <span class="post__tagsLabel">Tag</span>
+                  <span class="post__tags">[##_tag_label_rep_##]</span>
+                </div>
               </s_tag_label>
+            </div>
 
-              <div class="nav-post">
-                <s_article_prev>
-                  <a class="nav-post__item" href="[##_article_prev_link_##]">← [##_article_prev_title_##]</a>
-                </s_article_prev>
-                <s_article_next>
-                  <a class="nav-post__item" href="[##_article_next_link_##]">[##_article_next_title_##] →</a>
-                </s_article_next>
-              </div>
-            </footer>
+<section class="comments" id="comments">
+                            <div class="comment-intro" aria-label="댓글 안내">
+  <img class="comment-intro__avatar" src="./images/profile.png" alt="" />
+  <div class="comment-intro__meta">
+    <div class="comment-intro__title"><span class="brand__prompt">$</span><span class="p"> [##_title_##]</span></div>
+    <div class="comment-intro__desc">Planting logs...</div>
+  </div>
+</div>
 
-            <section class="comments">
-              <h2 class="panel__title">댓글</h2>
-              [##_comment_list_##]
-              [##_comment_form_##]
+<s_rp>
+                [##_comment_group_##]
+              </s_rp>
             </section>
           </article>
         </s_permalink_article_rep>
@@ -472,7 +472,7 @@
       <section class="panel profile">
         <h2 class="panel__title">Profile</h2>
         <div class="profile__head">
-          <!-- 프로필 이미지 URL은 티스토리 파일첨부로 업로드 해서 넣으면 됩니당 -->
+          <!-- 프로필 이미지 URL은 티스토리 파일첨부로 업로드 해서 넣으세요 -->
           <img class="profile__avatar" src="./images/profile.png" alt="Zeromo profile" />
           <div class="profile__meta">
             <div class="profile__name">Zeromo</div>
@@ -492,8 +492,10 @@
       </section>
     <section class="panel">
         <h2 class="panel__title">Tag</h2>
-        <div class="tag-cloud">
-          [##_tag_list_##]
+        <div class="tag-cloud" id="tagCloud">
+          <s_random_tags>
+            <a href="[##_tag_link_##]" class="tag-cloud__item [##_tag_class_##]">[##_tag_name_##]</a>
+          </s_random_tags>
         </div>
       </section>
 
@@ -519,8 +521,8 @@
           <ul class="sb-list sb-list--posts">
             <s_rctps_popular_rep>
               <li class="sb-item">
-                <a class="sb-link" href="[##_rctps_popular_rep_link_##]">[##_rctps_popular_rep_title_##]</a>
-                <span class="sb-meta">[##_rctps_popular_rep_simple_date_##]</span>
+                <a class="sb-link" href="[##_rctps_rep_link_##]">[##_rctps_rep_title_##]</a>
+                <span class="sb-meta">[##_rctps_rep_simple_date_##]</span>
               </li>
             </s_rctps_popular_rep>
           </ul>
@@ -579,390 +581,310 @@
       });
     })();
 
+  </script>
+  <script>
     (function () {
-      const body = document.getElementById("postBody");
-      const toc = document.getElementById("toc");
-      if (!body || !toc) return;
+      const STORAGE_KEY = "entered_blog";
+      const root = document.documentElement;
+      const goLandingBtn = document.getElementById("goLanding");
+      const skipLandingBtn = document.getElementById("skipLanding");
+      const copyEmailBtn = document.getElementById("copyEmail");
+      const copyToast = document.getElementById("copyToast");
+      const typeTarget = document.getElementById("typeTarget");
+      const landingConsole = document.getElementById("landingConsole");
 
-      const headings = body.querySelectorAll("h2, h3");
-      if (!headings.length) {
-        toc.style.display = "none";
-        return;
+      function currentPath() {
+        return (window.location.pathname || "/").replace(/\/+$/, "") || "/";
       }
 
-      const ul = document.createElement("ul");
-      ul.className = "toc__list";
+      function currentView() {
+        const params = new URLSearchParams(window.location.search);
+        const view = params.get("view");
+        if (view === "landing" || view === "blog" || view === "portfolio") return view;
 
-      headings.forEach((h, idx) => {
-        if (!h.id) h.id = `h-${idx}`;
-        const li = document.createElement("li");
-        li.className = `toc__item toc__item--${h.tagName.toLowerCase()}`;
-        li.innerHTML = `<a href="#${h.id}">${h.textContent}</a>`;
-        ul.appendChild(li);
-      });
+        const path = currentPath().toLowerCase();
+        if (path !== "/" && path.indexOf("portfolio") !== -1) return "portfolio";
 
-      toc.innerHTML = `<div class="toc__title">목차</div>`;
-      toc.appendChild(ul);
-    })();
-  </script>
+        if (!localStorage.getItem(STORAGE_KEY)) return "landing";
+        return "blog";
+      }
 
-  <script>
-    // ✅ List/Post UX Enhancements (Landing 제외)
-    (function () {
-      // Landing/Portfolio 상태에서는 동작하지 않음
-      if (document.documentElement.classList.contains("is-landing")) return;
-      if (document.documentElement.classList.contains("is-portfolio")) return;
+      function applyView(view) {
+        root.classList.remove("is-landing", "is-portfolio");
 
-      // 1) 목록 뷰(고정: COMPACT)
-      document.documentElement.dataset.listView = "compact";
-
-      // 2) 읽기 진행률 바 + Top 버튼
-      var fill = document.getElementById("readbarFill");
-      var post = document.querySelector(".post");
-      var topBtn = document.createElement("button");
-      topBtn.type = "button";
-      topBtn.className = "fab";
-      topBtn.id = "toTop";
-      topBtn.textContent = "↑";
-      topBtn.setAttribute("aria-label", "맨 위로");
-      document.body.appendChild(topBtn);
-
-      function clamp01(x){ return Math.max(0, Math.min(1, x)); }
-      function onScroll(){
-        if (fill && post) {
-          var rect = post.getBoundingClientRect();
-          var docH = document.documentElement.clientHeight;
-          var total = post.scrollHeight - docH;
-          // fallback: calc by scroll position within document
-          var sc = window.scrollY || document.documentElement.scrollTop || 0;
-          var max = (document.documentElement.scrollHeight - docH) || 1;
-          var p = clamp01(sc / max);
-          fill.style.width = (p * 100).toFixed(2) + "%";
+        if (view === "landing") {
+          root.classList.add("is-landing");
+          return;
         }
-        var y = window.scrollY || document.documentElement.scrollTop || 0;
-        topBtn.classList.toggle("fab--show", y > 420);
-      }
-      window.addEventListener("scroll", onScroll, { passive: true });
-      onScroll();
-      topBtn.addEventListener("click", function(){ window.scrollTo({ top: 0, behavior: "smooth" }); });
 
-      // 3) 퍼머링크 복사
-      var copyBtn = document.getElementById("copyPermalink");
-      if (copyBtn) {
-        copyBtn.addEventListener("click", function(){
-          var url = location.href;
-          try {
-            navigator.clipboard.writeText(url).then(function(){
-              copyBtn.classList.add("pbtn--ok");
-              copyBtn.textContent = "copied";
-              setTimeout(function(){
-                copyBtn.classList.remove("pbtn--ok");
-                copyBtn.textContent = "copy_link";
-              }, 1200);
-            });
-          } catch(e){}
-        });
+        if (view === "portfolio") {
+          root.classList.add("is-portfolio");
+          return;
+        }
+
+        localStorage.setItem(STORAGE_KEY, "1");
       }
 
-      // 4) 목차 토글(모바일 대응) + sticky
-      var toc = document.getElementById("toc");
-      var tocBtn = document.getElementById("toggleToc");
-      if (toc && tocBtn) {
-        tocBtn.addEventListener("click", function(){
-          toc.classList.toggle("toc--closed");
-          var closed = toc.classList.contains("toc--closed");
-          tocBtn.classList.toggle("pbtn--dim", closed);
-        });
+      function move(view, replace) {
+        if (view === "blog") localStorage.setItem(STORAGE_KEY, "1");
+
+        const url = view === "blog" ? "/" : "/?view=" + view;
+        if (replace) window.history.replaceState({}, "", url);
+        else window.location.href = url;
       }
 
-      // 5) 코드블럭 Copy 버튼
-      var pres = document.querySelectorAll(".post__body pre");
-      pres.forEach(function(pre){
-        if (pre.querySelector(".codecopy")) return;
-        var btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "codecopy";
-        btn.textContent = "copy";
-        btn.setAttribute("aria-label", "코드 복사");
-        pre.appendChild(btn);
+      function typeText(lines) {
+        if (!typeTarget || !landingConsole) return;
 
-        btn.addEventListener("click", function(){
-          var code = pre.querySelector("code");
-          var text = code ? code.innerText : pre.innerText;
-          try {
-            navigator.clipboard.writeText(text).then(function(){
-              btn.classList.add("codecopy--ok");
-              btn.textContent = "copied";
-              setTimeout(function(){ btn.classList.remove("codecopy--ok"); btn.textContent = "copy"; }, 1200);
-            });
-          } catch(e){}
-        });
-      });
-
-      // 6) 이미지 클릭 확대(모달)
-      var imgs = document.querySelectorAll(".post__body img");
-      if (imgs.length) {
-        var overlay = document.createElement("div");
-        overlay.className = "imgzoom";
-        overlay.innerHTML = '<div class="imgzoom__inner" role="dialog" aria-label="이미지 확대"><img alt="" /><button type="button" class="imgzoom__close" aria-label="닫기">×</button></div>';
-        document.body.appendChild(overlay);
-        var zoomImg = overlay.querySelector("img");
-        var closeBtn = overlay.querySelector(".imgzoom__close");
-
-        function close(){ overlay.classList.remove("imgzoom--show"); zoomImg.src = ""; }
-        overlay.addEventListener("click", function(e){
-          if (e.target === overlay) close();
-        });
-        closeBtn.addEventListener("click", close);
-        document.addEventListener("keydown", function(e){
-          if (!overlay.classList.contains("imgzoom--show")) return;
-          if (e.key === "Escape") close();
-        });
-
-        imgs.forEach(function(img){
-          img.classList.add("zoomable");
-          img.addEventListener("click", function(){
-            zoomImg.src = img.src;
-            zoomImg.alt = img.alt || "";
-            overlay.classList.add("imgzoom--show");
-          });
-        });
-      }
-    })();
-  </script>
-
-  <script>
-    // 공통: localStorage 키
-    (function(){
-      window.__BTD__ = window.__BTD__ || {};
-      window.__BTD__.ENTER_KEY = "entered_blog";
-      window.__BTD__.setEntered = function(){
-        try { localStorage.setItem(window.__BTD__.ENTER_KEY, "1"); } catch(e){}
-      };
-      window.__BTD__.clearEntered = function(){
-        try { localStorage.removeItem(window.__BTD__.ENTER_KEY); } catch(e){}
-      };
-      window.__BTD__.hasEntered = function(){
-        try { return localStorage.getItem(window.__BTD__.ENTER_KEY) === "1"; } catch(e){ return false; }
-      };
-    })();
-  </script>
-
-  <script>
-    // ✅ Portfolio 페이지 감지 + 페이지 전체 렌더
-    (function () {
-      var isPortfolio = location.pathname.indexOf("/pages/portfolio") === 0;
-      if (!isPortfolio) return;
-
-      // 포트폴리오로 들어오는 순간도 "entered"로 간주(다음엔 대문 스킵)
-      if (window.__BTD__ && window.__BTD__.setEntered) window.__BTD__.setEntered();
-
-      document.documentElement.classList.add("is-portfolio");
-
-      // 이메일 복사 버튼
-      var btn = document.getElementById("copyEmail");
-      var toast = document.getElementById("copyToast");
-      if (btn) {
-        btn.addEventListener("click", function () {
-          var email = "dudrb5260@naver.com";
-          try {
-            navigator.clipboard.writeText(email).then(function(){
-              if (toast) {
-                toast.style.display = "";
-                setTimeout(function(){ toast.style.display = "none"; }, 1000);
-              }
-            });
-          } catch(e) {}
-        });
-      }
-    })();
-  </script>
-
-  <script>
-    // ✅ Landing(대문): 인덱스에서만 동작
-    (function () {
-      var bodyId = (document.body && document.body.id) ? document.body.id : "";
-      var isIndex = (bodyId === "tt-body-index");
-      if (!isIndex) return;
-
-      var landing = document.getElementById("landing");
-      if (!landing) return;
-
-      var consoleEl = document.getElementById("landingConsole");
-
-      function setEntered() { if (window.__BTD__ && window.__BTD__.setEntered) window.__BTD__.setEntered(); }
-      function clearEntered() { if (window.__BTD__ && window.__BTD__.clearEntered) window.__BTD__.clearEntered(); }
-      function hasEntered() { return (window.__BTD__ && window.__BTD__.hasEntered) ? window.__BTD__.hasEntered() : false; }
-
-      function nowStamp() {
-        var d = new Date();
-        var hh = String(d.getHours()).padStart(2, "0");
-        var mm = String(d.getMinutes()).padStart(2, "0");
-        var ss = String(d.getSeconds()).padStart(2, "0");
-        return hh + ":" + mm + ":" + ss;
-      }
-
-      function writeLine(text, cls) {
-        if (!consoleEl) return;
-        var div = document.createElement("div");
-        div.className = "landing__line" + (cls ? (" " + cls) : "");
-        div.textContent = "[" + nowStamp() + "] " + text;
-        consoleEl.appendChild(div);
-        while (consoleEl.childNodes.length > 10) consoleEl.removeChild(consoleEl.firstChild);
-        consoleEl.scrollTop = consoleEl.scrollHeight;
-      }
-
-      function showLanding() {
-        landing.style.display = "";
-        document.documentElement.classList.add("is-landing");
-      }
-
-      function hideLanding() {
-        landing.style.display = "none";
-        document.documentElement.classList.remove("is-landing");
-      }
-
-      // 헤더 블로그 타이틀 클릭
-      var brandLanding = document.getElementById("brandLanding");
-      if (brandLanding) {
-        brandLanding.addEventListener("click", function () {
-          clearEntered();
-        });
-      }
-
-      // view=blog 로 들어온 경우: entered 저장 후 파라미터 제거
-      var url = new URL(location.href);
-      var view = url.searchParams.get("view");
-      if (view === "blog") {
-        setEntered();
-        url.searchParams.delete("view");
-        history.replaceState({}, "", url.toString());
-      }
-
-      // 최초 1회 노출 정책
-      if (hasEntered()) {
-        hideLanding();
-      } else {
-        showLanding();
-      }
-
-      if (!hasEntered()) {
-        writeLine("boot: landing ui loaded", "ok");
-        writeLine("auth: guest session", "dim");
-        writeLine("hint: Enter=enter_blog, Esc=:q", "dim");
-      }
-
-      // 타입라이터 + 출력
-      var target = document.getElementById("typeTarget");
-      var lines = [
-        { cmd: "cat ./readme.md", out: "OK: loaded profile & notes" },
-        { cmd: "tail -f ./incident.log", out: "LISTEN: ops/perf/issues stream" },
-        { cmd: "git log --oneline --decorate -5", out: "READY: latest changes loaded" }
-      ];
-
-      function typeLoop() {
-        if (!target) return;
-        var li = 0, ci = 0;
+        const phrase = lines[0] || "";
+        let i = 0;
 
         function tick() {
-          if (!document.documentElement.classList.contains("is-landing")) return;
-          var line = lines[li].cmd;
-          target.textContent = line.slice(0, ci);
-          ci += 1;
-
-          if (ci <= line.length) {
-            setTimeout(tick, 42);
-          } else {
-            writeLine("$ " + lines[li].cmd, "cmd");
-            writeLine(lines[li].out, "ok");
-            setTimeout(function () {
-              ci = 0;
-              li = (li + 1) % lines.length;
-              tick();
-            }, 900);
-          }
+          typeTarget.textContent = phrase.slice(0, i);
+          i += 1;
+          if (i <= phrase.length) window.setTimeout(tick, 42);
         }
 
-        setTimeout(tick, 300);
-      }
-      if (!hasEntered()) typeLoop();
+        tick();
 
-      // 시퀀스 출력 헬퍼
-      function runSequence(steps, onDone) {
-        var i = 0;
-        function next() {
-          if (!document.documentElement.classList.contains("is-landing")) return;
-          if (i >= steps.length) { if (onDone) onDone(); return; }
-          var s = steps[i++];
-          writeLine(s.text, s.cls);
-          setTimeout(next, s.delay || 180);
-        }
-        next();
-      }
-
-      function closeLandingPersist() {
-        runSequence(
-          [
-            { text: "exit: :q", cls: "dim", delay: 140 },
-            { text: "state: entered_blog=1", cls: "dim", delay: 140 }
-          ],
-          function () { setEntered(); hideLanding(); }
-        );
-      }
-
-      function goBlog() {
-        runSequence(
-          [
-            { text: "nav: enter_blog", cls: "ok", delay: 140 },
-            { text: "connect: /?view=blog", cls: "dim", delay: 160 },
-            { text: "ok: redirecting…", cls: "ok", delay: 160 }
-          ],
-          function () { setEntered(); location.href = "/?view=blog"; }
-        );
-      }
-
-      function goPortfolio() {
-        runSequence(
-          [
-            { text: "nav: open_portfolio", cls: "ok", delay: 140 },
-            { text: "connect: /pages/portfolio", cls: "dim", delay: 160 },
-            { text: "ok: redirecting…", cls: "ok", delay: 160 }
-          ],
-          function () { setEntered(); location.href = "/pages/portfolio"; }
-        );
-      }
-
-      var skip = document.getElementById("skipLanding");
-      if (skip) skip.addEventListener("click", function () { closeLandingPersist(); });
-
-      landing.addEventListener("click", function (e) {
-        var a = e.target && e.target.closest ? e.target.closest("a[data-enter]") : null;
-        if (!a) return;
-
-        e.preventDefault();
-        var kind = a.getAttribute("data-enter");
-        if (kind === "blog") goBlog();
-        else if (kind === "portfolio") goPortfolio();
-      });
-
-      document.addEventListener("keydown", function (e) {
-        if (!document.documentElement.classList.contains("is-landing")) return;
-
-        if (e.key === "Escape") { e.preventDefault(); closeLandingPersist(); }
-        if (e.key === "Enter") { e.preventDefault(); goBlog(); }
-      });
-
-      var goLandingBtn = document.getElementById("goLanding");
-      if (goLandingBtn) {
-        goLandingBtn.addEventListener("click", function () {
-          clearEntered();
-          location.href = "/";
+        lines.slice(1).forEach(function(line, index) {
+          window.setTimeout(function() {
+            const row = document.createElement("div");
+            row.className = "landing__line" + (index === 0 ? " cmd" : index % 2 ? " ok" : " dim");
+            row.textContent = line;
+            landingConsole.appendChild(row);
+          }, 260 + (index * 180));
         });
       }
+
+      function bindEvents() {
+        document.querySelectorAll('[data-enter="blog"]').forEach(function(el) {
+          el.addEventListener("click", function() {
+            localStorage.setItem(STORAGE_KEY, "1");
+          });
+        });
+
+        if (goLandingBtn) {
+          goLandingBtn.addEventListener("click", function() {
+            move("landing");
+          });
+        }
+
+        if (skipLandingBtn) {
+          skipLandingBtn.addEventListener("click", function() {
+            move("blog");
+          });
+        }
+
+        document.addEventListener("keydown", function(e) {
+          if (!root.classList.contains("is-landing")) return;
+          if (e.key === "Escape") move("blog");
+          if (e.key === "Enter" && !["INPUT", "TEXTAREA"].includes((e.target && e.target.tagName) || "")) move("blog");
+        });
+
+        if (copyEmailBtn) {
+          copyEmailBtn.addEventListener("click", async function() {
+            try {
+              await navigator.clipboard.writeText("dudrb5260@naver.com");
+              if (copyToast) {
+                copyToast.style.display = "block";
+                window.setTimeout(function() {
+                  copyToast.style.display = "none";
+                }, 1400);
+              }
+            } catch (e) {}
+          });
+        }
+      }
+
+      const view = currentView();
+      applyView(view);
+
+      if (view === "landing") {
+        typeText([
+          "init zeromo://landing",
+          "$ load_profile --safe",
+          "ok :: backend · infra · db",
+          "ok :: portfolio route ready",
+          "ok :: enter_blog to continue"
+        ]);
+      }
+
+      bindEvents();
     })();
   </script>
 
-</s_t3>
+  <script>
+    (function(){
+      const guestLink = document.getElementById("guestMenuLink");
+      if(!guestLink) return;
+
+      const guestbook = guestLink.dataset.guestbookLink;
+      const isLogin =
+        window.T &&
+        T.config &&
+        T.config.USER &&
+        T.config.USER.name;
+
+      if(!isLogin){
+        guestLink.textContent = "LOGIN";
+        guestLink.href =
+            "https://www.tistory.com/auth/login?redirectUrl=" +
+            encodeURIComponent(location.href);
+      } else {
+        guestLink.textContent = "GUEST";
+        guestLink.href = guestbook;
+      }
+    })();
+    (function(){
+      'use strict';
+      var tocWrap = document.getElementById('tocWrap');
+      var tocList = document.getElementById('toc');
+      var readbarFill = document.getElementById('readbarFill');
+      var postBody = document.getElementById('postBody') || document.querySelector('.post__body');
+
+      if(!tocWrap || !tocList || !postBody) return;
+
+      function getHeadings(){
+        return Array.prototype.slice.call(postBody.querySelectorAll('h2, h3'));
+      }
+
+      function slugify(text){
+        return (text || '')
+          .toString()
+          .trim()
+          .toLowerCase()
+          .replace(/[^\w\u3131-\uD79D\s-]/g,'')
+          .replace(/\s+/g,'-')
+          .replace(/-+/g,'-')
+          .replace(/^-|-$/g,'') || ('h-' + Math.random().toString(36).slice(2,8));
+      }
+
+      function buildToc(){
+        var hs = getHeadings();
+        if(!hs.length){
+          tocWrap.style.display = 'none';
+          return;
+        }
+        tocList.innerHTML = '';
+        hs.forEach(function(h){
+          if(!h.id) h.id = slugify(h.textContent);
+          var a = document.createElement('a');
+          a.href = '#' + h.id;
+          a.textContent = h.textContent.trim() || h.tagName;
+          a.className = (h.tagName.toLowerCase() === 'h3') ? 'toc__depth2' : '';
+          tocList.appendChild(a);
+        });
+      }
+
+      function setActive(){
+        var links = Array.prototype.slice.call(tocList.querySelectorAll('a'));
+        if(!links.length) return;
+
+        var fromTop = window.scrollY + 120;
+        var activeId = null;
+
+        var hs = getHeadings();
+        for(var i=0;i<hs.length;i++){
+          var top = hs[i].getBoundingClientRect().top + window.scrollY;
+          if(top <= fromTop) activeId = hs[i].id;
+        }
+
+        links.forEach(function(a){
+          var id = (a.getAttribute('href')||'').slice(1);
+          if(id && id === activeId) a.classList.add('is-active');
+          else a.classList.remove('is-active');
+        });
+      }
+
+      function updateReadbar(){
+        if(!readbarFill) return;
+
+        var rect = postBody.getBoundingClientRect();
+        var viewportH = window.innerHeight || document.documentElement.clientHeight;
+
+        var total = postBody.scrollHeight - viewportH;
+        var scrolled = window.scrollY - (postBody.getBoundingClientRect().top + window.scrollY);
+        var p = 0;
+        if(total > 0) p = Math.min(1, Math.max(0, scrolled / total));
+        readbarFill.style.width = (p * 100).toFixed(2) + '%';
+      }
+
+      function toggleDock(){
+        var triggerY = tocWrap.getBoundingClientRect().top + window.scrollY + tocWrap.offsetHeight;
+        if(window.scrollY > triggerY) document.body.classList.add('toc-docked');
+        else document.body.classList.remove('toc-docked');
+      }
+
+      buildToc();
+      setActive();
+      updateReadbar();
+      toggleDock();
+
+      window.addEventListener('scroll', function(){
+        setActive();
+        updateReadbar();
+        toggleDock();
+      }, {passive:true});
+
+      window.addEventListener('resize', function(){
+        updateReadbar();
+        toggleDock();
+      });
+
+      tocList.addEventListener('click', function(e){
+        var a = e.target && e.target.closest ? e.target.closest('a') : null;
+        if(!a) return;
+        var id = (a.getAttribute('href')||'').slice(1);
+        var el = id ? document.getElementById(id) : null;
+        if(!el) return;
+        e.preventDefault();
+        var top = el.getBoundingClientRect().top + window.scrollY - 90;
+        window.scrollTo({top: top, behavior: 'smooth'});
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const guestbook = document.querySelector('.guestbook-wrap');
+      if (!guestbook) return;
+
+      function findWriterName(fromEl) {
+        const item = fromEl.closest('.tt-item-reply');
+        if (!item) return '';
+        const writer =
+          item.querySelector('.tt-link-user') ||
+          item.querySelector('.tt-name') ||
+          item.querySelector('.tt-comment-writer');
+        return writer ? writer.textContent.trim() : '';
+      }
+
+      guestbook.addEventListener('click', function (e) {
+        const replyBtn = e.target.closest('a, button');
+        if (!replyBtn) return;
+
+        const text = (replyBtn.textContent || '').trim();
+        if (text !== '답글') return;
+
+        const writerName = findWriterName(replyBtn);
+
+        window.setTimeout(function () {
+          const textarea = guestbook.querySelector('textarea');
+          if (!textarea) return;
+
+          const mention = writerName ? '@' + writerName + ' ' : '';
+          if (!textarea.value.trim().startsWith(mention)) {
+            textarea.value = mention;
+            textarea.focus();
+            const len = textarea.value.length;
+            textarea.setSelectionRange(len, len);
+          }
+        }, 50);
+      });
+    })();
+    </script>
+
   <script>
     (function () {
       function normalizeThumb(el){
@@ -997,7 +919,6 @@
     })();
   </script>
 
-  </script>
 
 <script>
   (function(){
@@ -1007,13 +928,11 @@
       buttons.forEach(function(btn){
         btn.addEventListener("click", function(){
           var tab = btn.getAttribute("data-tab");
-          // buttons
           buttons.forEach(function(b){
             var active = b === btn;
             b.classList.toggle("is-active", active);
             b.setAttribute("aria-selected", active ? "true" : "false");
           });
-          // panels
           document.querySelectorAll(".tabbody").forEach(function(p){
             var match = p.getAttribute("data-tab-panel") === tab;
             p.classList.toggle("is-active", match);
@@ -1049,6 +968,27 @@
       }catch(e){ /* ignore */ }
     });
   })();
+</script>
+
+
+<script>
+(function(){
+  function bind(){
+    var el = document.querySelector('.comment-intro');
+    if(!el) return;
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', function(e){
+      var t = e.target;
+      if(t && (t.closest && t.closest('a,button,input,textarea,select,label'))) return;
+      window.location.href = '/';
+    });
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', bind);
+  } else {
+    bind();
+  }
+})();
 </script>
 
 </body>
