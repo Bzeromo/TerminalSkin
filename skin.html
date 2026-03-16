@@ -414,54 +414,58 @@
       <s_article_rep>
 
         <s_permalink_article_rep>
-          <article class="panel post">
-            <header class="post__head">
-              <h1 class="post__title">[##_article_rep_title_##]</h1>
-              <div class="post__meta">
-                <span class="badge">
-                  <a href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a>
-                </span>
-                <span class="dim">[##_article_rep_date_##]</span>
-              </div>
-</header>
-<div class="post__content">
-              <aside class="post-toc" id="tocWrap" aria-label="목차">
-                <div class="post-toc__head">
-                  <span class="post-toc__title">목차</span>
-                  <div class="readbar readbar--inToc" aria-hidden="true"><div class="readbar__fill" id="readbarFill"></div></div>
+          <div class="post-shell">
+            <article class="panel post">
+              <header class="post__head">
+                <h1 class="post__title">[##_article_rep_title_##]</h1>
+                <div class="post__meta">
+                  <span class="badge">
+                    <a href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a>
+                  </span>
+                  <span class="dim">[##_article_rep_date_##]</span>
                 </div>
-                <nav class="toc" id="toc"></nav>
-              </aside>
+              </header>
 
-              <div class="post__body" id="postBody">
-                [##_article_rep_desc_##]
-              </div>
-            </div>
-
-            
-            <div class="post__tagsOnly">
-              <s_tag_label>
-                <div class="post__tagsInline">
-                  <span class="post__tagsLabel">Tag</span>
-                  <span class="post__tags">[##_tag_label_rep_##]</span>
+              <div class="post__content">
+                <div class="post__body" id="postBody">
+                  [##_article_rep_desc_##]
                 </div>
-              </s_tag_label>
-            </div>
+              </div>
 
-<section class="comments" id="comments">
-                            <div class="comment-intro" aria-label="댓글 안내">
-  <img class="comment-intro__avatar" src="./images/profile.png" alt="" />
-  <div class="comment-intro__meta">
-    <div class="comment-intro__title"><span class="brand__prompt">$</span><span class="p"> [##_title_##]</span></div>
-    <div class="comment-intro__desc">Planting logs...</div>
-  </div>
-</div>
+              <div class="post__tagsOnly">
+                <s_tag_label>
+                  <div class="post__tagsInline">
+                    <span class="post__tagsLabel">Tag</span>
+                    <span class="post__tags">[##_tag_label_rep_##]</span>
+                  </div>
+                </s_tag_label>
+              </div>
 
-<s_rp>
-                [##_comment_group_##]
-              </s_rp>
-            </section>
-          </article>
+              <section class="comments" id="comments">
+                <div class="comment-intro" aria-label="댓글 안내">
+                  <img class="comment-intro__avatar" src="./images/profile.png" alt="" />
+                  <div class="comment-intro__meta">
+                    <div class="comment-intro__title"><span class="brand__prompt">$</span><span class="p"> [##_title_##]</span></div>
+                    <div class="comment-intro__desc">Planting logs...</div>
+                  </div>
+                </div>
+
+                <s_rp>
+                  [##_comment_group_##]
+                </s_rp>
+              </section>
+            </article>
+
+            <aside class="post-toc" id="tocWrap" aria-label="목차">
+              <div class="post-toc__head">
+                <span class="post-toc__title">목차</span>
+                <div class="readbar readbar--inToc" aria-hidden="true">
+                  <div class="readbar__fill" id="readbarFill"></div>
+                </div>
+              </div>
+              <nav class="toc" id="toc"></nav>
+            </aside>
+          </div>
         </s_permalink_article_rep>
 
       </s_article_rep>
