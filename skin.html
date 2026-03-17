@@ -28,7 +28,7 @@
       </div>
 
       <div class="header__actions">
-<s_search>
+        <s_search>
           <div class="search" role="search">
             <input class="search__input"
                    type="search"
@@ -310,10 +310,10 @@
             </div>
 
             <div class="portfolio__cta">
-              <a class="portfolio__btn portfolio__btn--primary" href="/?view=blog">
+              <a class="portfolio__btn portfolio__btn--primary" style="margin-top: 12px;" href="/?view=blog">
                 back_to_blog
               </a>
-              <button class="portfolio__btn" type="button" id="copyEmail">
+              <button class="portfolio__btn" style="margin-top: 12px;" type="button" id="copyEmail">
                 copy_email
               </button>
             </div>
@@ -415,14 +415,16 @@
 
         <s_permalink_article_rep>
           <div class="post-shell">
-            <article class="panel post">
-              <header class="post__head">
-                <h1 class="post__title">[##_article_rep_title_##]</h1>
-                <div class="post__meta">
-                  <span class="badge">
-                    <a href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a>
-                  </span>
-                  <span class="dim">[##_article_rep_date_##]</span>
+            <article class="panel post post--hero">
+              <header class="post__hero" style="--post-hero-image: url('[##_article_rep_thumbnail_raw_url_##]');">
+                <div class="post__hero-inner">
+                  <div class="post__meta post__meta--hero">
+                    <span class="badge">
+                      <a href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a>
+                    </span>
+                    <span class="dim">[##_article_rep_date_##]</span>
+                  </div>
+                  <h1 class="post__title post__title--hero">[##_article_rep_title_##]</h1>
                 </div>
               </header>
 
@@ -609,7 +611,10 @@
         const path = currentPath().toLowerCase();
         if (path !== "/" && path.indexOf("portfolio") !== -1) return "portfolio";
 
-        if (!localStorage.getItem(STORAGE_KEY)) return "landing";
+        if (!localStorage.getItem(STORAGE_KEY) && path === "/") {
+          return "landing";
+        }
+
         return "blog";
       }
 
